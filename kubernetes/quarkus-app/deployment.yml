@@ -1,0 +1,48 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: quarkus-vertx-knative-backend
+spec:
+ replicas: 1
+ strategy:
+  type: RollingUpdate
+  rollingUpdate:
+   maxSurge: 1
+   maxUnavailable: 1
+ selector:
+  matchLabels:
+   app: quarkus-vertx-knative
+   tier: backend
+ template:
+   metadata:
+    labels:
+     app: quarkus-vertx-knative
+     tier: backend
+   spec:
+    containers:
+     - image: dbatista/quarkus-vertx-knative:latest
+       name: quarkus-vertx-knative
+       env:
+        - name: HOST
+          value: "postgres-svc.myproject.svc"
+       ports:
+        - containerPort: 12900
+          protocol: TCP
+       livenessProbe:
+         httpGet:
+           path: /health
+           port: 12900
+         initialDelaySeconds: 30
+       resources:
+        requests:
+         cpu: 100m
+         memory: 170Mi
+        limits:
+         cpu: 128Mi
+         memory: 200Mi
+
+
+
+
+

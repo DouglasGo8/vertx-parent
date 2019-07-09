@@ -1,0 +1,15 @@
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+ name: quarkus-vertx-knative-ingress
+spec:
+ rules:
+  - host: quarkus-vertx-knative.10.0.75.2.nip.io
+    http:
+     paths:
+      - path: /
+        backend:
+         serviceName: quarkus-vertx-knative-service
+         servicePort: 12900

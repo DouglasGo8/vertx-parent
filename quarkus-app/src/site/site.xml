@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="yes" ?>
+<!DOCTYPE xml>
+<project name="vertx-quarkus-app">
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.5</version>
+    </skin>
+    <body>
+        <menu ref="reports"/>
+    </body>
+</project>

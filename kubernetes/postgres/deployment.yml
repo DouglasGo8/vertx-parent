@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+ replicas: 1
+ template:
+  metadata:
+   labels:
+    name: postgres
+  spec:
+   containers:
+   - name: postgres
+     image: postgres
+     imagePullPolicy: "IfNotPresent"
+     ports:
+      - containerPort: 5432
+     envFrom:
+      - configMapRef:
+         name: postgres-cfm
+     volumeMounts:
+      - mountPath: /var/lib
+        name: postgresdb      
+   volumes:
+   - name: postgresdb      
+     persistentVolumeClaim:
+      claimName: postgres-pvc    
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+ name: postgres-svc
+ labels:
+  name: postgres
+spec:
+ ports:
+ - nodePort: 0
+   port: 5432
+   protocol: TCP
+   targetPort: 5432
+   name: postgres
+ type: NodePort
+ selector:
+  name: postgres

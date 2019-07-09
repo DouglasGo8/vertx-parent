@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: postgres-cfm
+ labels:
+  app: postgres
+data:
+ PGDATA: /pgdata
+ POSTGRES_DB: quarkusdb
+ POSTGRES_USER: guest
+ POSTGRES_PASSWORD: welcome1
