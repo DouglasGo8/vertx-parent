@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nubank-check-balance-app
+  labels:
+    name: nubank-check-balance-app
+    tier: backend
+    ship: nubank
+    env: local
+    rel: final
+spec:
+  containers:
+    - image: douglasdb/nubank-check-balance-app:latest
+      name: nubank-check-balance-app
+      ports:
+        - containerPort: 32666
+          protocol: TCP
+
