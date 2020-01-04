@@ -25,7 +25,6 @@
         <module>amqp-bridge-app</module>
         <module>basic-concepts</module>
         <module>circuit-breaker</module>
-        <module>nubank-check-balance-app</module>
     </modules>
 
     <properties>
