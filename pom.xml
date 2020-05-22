@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.vertx.pagseguro</groupId>
     <artifactId>vertx-pagseguro-parent</artifactId>
-
-
     <packaging>pom</packaging>
     <version>3.7.0</version>
     <name>Vertx Projects</name>
-
 
     <modules>
         <module>hello-world-web</module>
@@ -26,14 +23,13 @@
         <module>basic-concepts</module>
         <module>circuit-breaker</module>
         <module>nubank-check-balance-app</module>
+        <module>cvc-handson</module>
     </modules>
 
     <properties>
         <log4j.version>1.2.17</log4j.version>
         <resteasy.version>4.0.0.Final</resteasy.version>
     </properties>
-
-
     <dependencies>
         <!-- logging -->
         <dependency>
@@ -41,22 +37,17 @@
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
         </dependency>
-
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.8</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
-
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.25</version>
         </dependency>
-
     </dependencies>
-
-
 </project>

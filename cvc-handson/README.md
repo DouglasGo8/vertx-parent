@@ -1,7 +1,8 @@
-# Vert.x NuBank Check and Balances Evaluations
+# Vert.x with Camel Bridge CVC Broker APIS Proxy
 
 Microservice based on Vert.x framework <http://vertx.io />, Vert.x is toolkit lightweight that provides
-non-blocking and reactive apis
+non-blocking and reactive apis, Apache Camel <https://camel.apache.org/> is an <i>Open Source Integration Framework</i> 
+that empowers you to quickly and easily integrate various system consuming or producing data.
 
 <https://github.com/vert-x3/vertx-junit5/tree/master/vertx-junit5-web-client/src/main/java/examples />
 
@@ -14,17 +15,17 @@ non-blocking and reactive apis
 $ mvn clean -DskipTests compile
 $ mvn clean -DskipTests package 
 
-# Running only with jar 
+# Running only with jar over root project dir 
 
-$ java -jar target/nubank-check-balance-app-1.0-SNAPSHOT-fat.jar
+$ java -jar target/XXXXX
 Or
-$ java -jar nubank-check-balance-app-1.0-SNAPSHOT-fat.jar
+$ java -jar XXXXX
 
 # Docker Release
-docker build -t nubank-app .
-docker run --rm --name nubank-app -p 32666:32666 nubank-app
+docker build -t XXXX .
+docker run --rm --name XXXX -p 32666:32666 XXXX
 
-# OKD Release
+# OKD Release Refactory all
 oc cluster up
 oc login -u developer -p welcome1
 oc new-build --binary --name=nubank-check-balance-app -l app=nubank-check-balance-app

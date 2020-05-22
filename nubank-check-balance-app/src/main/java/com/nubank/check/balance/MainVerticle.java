@@ -13,7 +13,7 @@ import io.vertx.core.logging.LoggerFactory;
 public class MainVerticle extends AbstractVerticle {
 
 
-    private Logger logger = LoggerFactory.getLogger(MainVerticle.class);
+    private static final Logger logger = LoggerFactory.getLogger(MainVerticle.class);
 
     /**
      *
