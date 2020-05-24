@@ -53,20 +53,6 @@
       </plugin>
     </plugins>
   </build>
-  <repositories>
-    <repository>
-      <id>my-internal-site</id>
-      <url>http://myserver/repo</url>
-    </repository>
-  </repositories>
-  <dependencies>
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>1.18.8</version>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
   <properties>
     <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
     <maven-shade-plugin.version>2.3</maven-shade-plugin.version>

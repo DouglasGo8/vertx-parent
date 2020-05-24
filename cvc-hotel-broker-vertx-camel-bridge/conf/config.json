@@ -1,0 +1,8 @@
+{
+	"camelQ": "camel.hotelByCityQ",
+	"vertxQ": "vertx.hotelByCityQ",
+	"httpPort": 12088,
+	"appContextPath": "META-INF/spring/app-context.xml",
+	"apiSayHelloPath": "/api/cvc/travel/sayHello",
+	"apiTravelReservationPath": "/api/cvc/travel/in"
+}

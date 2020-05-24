@@ -173,7 +173,7 @@ public class CheckBalanceServiceVerticle extends AbstractVerticle {
     }
 
     /**
-     * @param vertxContext
+     * @param vertxContext Vert.x Core Context
      */
     private void setDefaultInternalErrorServer(RoutingContext vertxContext) {
         vertxContext.response()

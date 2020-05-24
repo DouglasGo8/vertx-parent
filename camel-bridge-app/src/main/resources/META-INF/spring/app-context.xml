@@ -1,21 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:camel="http://camel.apache.org/schema/spring"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans                 http://www.springframework.org/schema/beans/spring-beans.xsd                 http://www.springframework.org/schema/context                  http://www.springframework.org/schema/context/spring-context.xsd                  http://camel.apache.org/schema/spring                  http://camel.apache.org/schema/spring/camel-spring.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://camel.apache.org/schema/spring
+    http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <!--
     <context:property-placeholder ignore-resource-not-found="true" location="classpath:app.properties"/>
+
     <bean class="io.vertx.pagseguro.rmi.HelloServiceImpl" id="helloServiceBean"/>
+
     <bean class="java.rmi.registry.LocateRegistry"
-        factory-method="createRegistry" id="rmiServer">
+          factory-method="createRegistry" id="rmiServer">
         <constructor-arg index="0" value="${port}"/>
     </bean>
-    <camelContext depends-on="rmiServer" id="camel" xmlns="http://camel.apache.org/schema/spring">
-        <endpoint id="rmiService" 
-        uri="rmi://localhost:${port}/helloServiceBean?remoteInterfaces=io.vertx.pagseguro.rmi.HelloService"/>
-        <camel:route id="_route1">
-            <from id="_from1" ref="rmiService"/>
-            <log id="_log1" message="Incoming request on RMI"/>
-            <to id="_to1" uri="bean:helloServiceBean"/>
-        </camel:route>
+    -->
+    <!-- <camelContext depends-on="rmiServer" id="camel" xmlns="http://camel.apache.org/schema/spring">
+         <endpoint id="rmiService"
+         uri="rmi://localhost:${port}/helloServiceBean?remoteInterfaces=io.vertx.pagseguro.rmi.HelloService"/>
+         <camel:route id="_route1">
+             <from id="_from1" ref="rmiService"/>
+             <log id="_log1" message="Incoming request on RMI"/>
+             <to id="_to1" uri="bean:helloServiceBean"/>
+         </camel:route>
+     </camelContext>-->
+
+    <camelContext id="camel" xmlns="http://camel.apache.org/schema/spring">
+        <endpoint id="helloEndpoint"
+                  uri="direct:hello"/>
+        <route>
+            <from ref="helloEndpoint"/>
+            <log message="${body}"/>
+
+            <transform>
+                <constant>Ok</constant>
+            </transform>
+        </route>
     </camelContext>
+
 </beans>

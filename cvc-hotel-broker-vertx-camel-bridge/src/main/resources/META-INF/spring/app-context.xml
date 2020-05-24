@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring
+       http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+
+    <bean id="travelInfoReqBean" class="br.com.cvc.hotel.broker.service.TravelOfHotelByCityBean"/>
+    <bean id="executorService" class="java.util.concurrent.Executors" init-method="newCachedThreadPool"/>
+
+    <camelContext id="cvcCamelContext" xmlns="http://camel.apache.org/schema/spring">
+        <propertyPlaceholder id="propertyPlaceHolder">
+            <propertiesLocation resolver="classpath" path="application.properties"/>
+        </propertyPlaceholder>
+        <threadPoolProfile id="threadProfile"
+                           poolSize="20" maxPoolSize="50" maxQueueSize="-1"/>
+
+        <endpoint uri="direct:camelHotelByIdQ" id="camel.hotelByIdQ"/>
+        <endpoint uri="direct:camelHotelByCityQ" id="camel.hotelByCityQ"/>
+
+        <route>
+            <from uri="camel.hotelByCityQ"/>
+            <enrich cacheSize="1000">
+                <constant>direct:enrichHotels</constant>
+            </enrich>
+        </route>
+        <route>
+            <from uri="camel.hotelByIdQ"/>
+            <enrich cacheSize="1000">
+                <constant>direct:enrichHotels</constant>
+            </enrich>
+        </route>
+        <route>
+            <from uri="direct:enrichHotels"/>
+            <setProperty propertyName="urlHotelById">
+                <constant>{{hotel.by.id}}</constant>
+            </setProperty>
+            <setProperty propertyName="urlHotelByCity">
+                <constant>{{hotel.by.city}}</constant>
+            </setProperty>
+            <multicast parallelProcessing="true" executorServiceRef="threadProfile">
+                <bean ref="travelInfoReqBean"/>
+                <!--
+                    another process to run in parallel
+                    , this parallel annotation
+                    is not necessary if have just one
+                    execution
+                 -->
+            </multicast>
+        </route>
+    </camelContext>
+
+</beans>
