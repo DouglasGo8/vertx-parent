@@ -14,12 +14,9 @@ $ mvn clean -DskipTests compile exec:java
 #### Payloads and Tests
 **see /snapshots/postman/fullOverview_Test1.png**
 
-#### Running only with jar 
+#### Running only with jar with conf dir on root 
 ````
 $ java -jar target/cvc-hotel-broker-1.0-SNAPSHOT-fat.jar
-Or
-$ cd target
-$ java -jar cvc-hotel-broker-1.0-SNAPSHOT-fat.jar
 ````
 #### Endpoint 
 **see /snapshots/postman/fullOverview_Test1.png**
