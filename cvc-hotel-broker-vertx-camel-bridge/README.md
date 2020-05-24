@@ -1,8 +1,6 @@
 ## **Vert.x Bridging over Camel <~> CVC Hotel Broker By City Name **
 
-##### Microservice based on [Vert.x framework] (http://vertx.io), Vert.x is toolkit lightweight for building reactive
-application on JVM, [Apache Camel] (https://camel.apache.org) is an open source integration framework that empowers 
-you to quickly and easily integrate various systems consuming or producing data. 
+##### Microservice based on [Vert.x framework] (http://vertx.io), Vert.x is toolkit lightweight for building reactive application on JVM, [Apache Camel] (https://camel.apache.org) is an open source integration framework that empowers you to quickly and easily integrate various systems consuming or producing data. 
 ---
 #### Compile and Run with Apache Maven
 ````
