@@ -14,6 +14,7 @@
     <groupId>br.com.cvc.hotel.broker.api</groupId>
     <artifactId>cvc-hotel-broker-quarkus-vertx</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <name>CVC :: Hotel Broker Proxy :: API :: Quarkus Reactive</name>
 
     <properties>
 

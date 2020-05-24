@@ -13,7 +13,7 @@
     <groupId>br.com.cvc.hotel.broker.api</groupId>
     <artifactId>cvc-hotel-broker-vertx-camel-bridge</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>CVC :: Hotel Broker Proxy :: API</name>
+    <name>CVC :: Hotel Broker Proxy :: API :: Vertx with Camel</name>
 
     <properties>
         <!-- last vert.x version with spring xml bean support -->
