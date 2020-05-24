@@ -3,26 +3,15 @@
         xmlns="http://maven.apache.org/POM/4.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>io.vertx.pagseguro</groupId>
     <artifactId>vertx-pagseguro-parent</artifactId>
     <packaging>pom</packaging>
-    <version>3.7.0</version>
+    <version>1.0-SNAPSHOT</version>
     <name>Vertx Projects</name>
-    <modules>
-        <module>hello-world-web</module>
-        <module>hello-world</module>
-        <module>kafka-app</module>
-        <module>cassandra-app</module>
-        <module>quarkus-app</module>
-        <module>utils-lib</module>
-        <module>camel-bridge-app</module>
-        <module>amqp-bridge-app</module>
-        <module>basic-concepts</module>
-        <module>circuit-breaker</module>
-        <module>nubank-check-balance-app</module>
-        <module>cvc-hotel-broker-vertx-camel-bridge</module>
-    </modules>
+
     <properties>
         <log4j.version>1.2.17</log4j.version>
         <resteasy.version>4.0.0.Final</resteasy.version>
@@ -47,4 +36,21 @@
             <version>1.7.25</version>
         </dependency>
     </dependencies>
+
+    <modules>
+        <module>hello-world-web</module>
+        <module>hello-world</module>
+        <module>kafka-app</module>
+        <module>cassandra-app</module>
+        <module>quarkus-app</module>
+        <module>utils-lib</module>
+        <module>camel-bridge-app</module>
+        <module>amqp-bridge-app</module>
+        <module>basic-concepts</module>
+        <module>circuit-breaker</module>
+        <module>nubank-check-balance-app</module>
+        <module>cvc-hotel-broker-quarkus-vertx</module>
+        <module>cvc-hotel-broker-vertx-camel-bridge</module>
+
+    </modules>
 </project>

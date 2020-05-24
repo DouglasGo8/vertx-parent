@@ -52,7 +52,7 @@ public class TravelRouteVertx extends AbstractVerticle {
         });
 
         router.post(super.config().getString("apiTravelReservationPath"))
-                .handler(this::travelReservationVertxCtx);
+                .handler(this::travelReservation);
 
         super.vertx.createHttpServer().requestHandler(router).listen(httpPort,
                 response -> {
@@ -68,7 +68,7 @@ public class TravelRouteVertx extends AbstractVerticle {
      * @param rCtx vert.x Routing Context
      * @see https://github.com/vert-x3/vertx-examples/blob/master/core-examples/src/main/java/io/vertx/example/core/eventbus/messagecodec/util/CustomMessageCodec.java
      */
-    private void travelReservationVertxCtx(final RoutingContext rCtx) {
+    private void travelReservation(final RoutingContext rCtx) {
         try {
             final String vertxQ = super.config().getString("vertxQ");
             // create Custom Codec to PRODUCTION deploy

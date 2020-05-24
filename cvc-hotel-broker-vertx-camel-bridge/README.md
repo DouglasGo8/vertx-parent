@@ -3,6 +3,7 @@
 ##### Microservice based on [Vert.x framework] (http://vertx.io), Vert.x is toolkit lightweight for building reactive application on JVM, [Apache Camel] (https://camel.apache.org) is an open source integration framework that empowers you to quickly and easily integrate various systems consuming or producing data. 
 ---
 #### Compile and Run with Apache Maven
+* If using Powershell, wrap -D parameters in double quotes
 ````
 $ cd vertx-parent
 $ mvn clean dependency:resolve

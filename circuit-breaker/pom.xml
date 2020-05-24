@@ -8,7 +8,7 @@
 	<parent>
 		<artifactId>vertx-pagseguro-parent</artifactId>
 		<groupId>io.vertx.pagseguro</groupId>
-		<version>3.7.0</version>
+		<version>1.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>circuit-breaker</artifactId>
@@ -18,6 +18,7 @@
 	<name>Circuit Breaker with Vertx</name>
 	
 	<properties>
+		<vertx.version>3.8.3</vertx.version>
 		<exec-maven-plugin.version>1.4.0</exec-maven-plugin.version>
 		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
 		<maven-shade-plugin.version>2.3</maven-shade-plugin.version>
@@ -29,12 +30,12 @@
 		<dependency>
 			<groupId>io.vertx</groupId>
 			<artifactId>vertx-core</artifactId>
-			<version>${project.parent.version}</version>
+			<version>${vertx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.vertx</groupId>
 			<artifactId>vertx-circuit-breaker</artifactId>
-			<version>${project.parent.version}</version>
+			<version>${vertx.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.vertx.pagseguro</groupId>
@@ -78,7 +79,7 @@
 									<resource>META-INF/services/io.vertx.core.spi.VerticleFactory</resource>
 								</transformer>
 							</transformers>
-							<artifactSet></artifactSet>
+							<artifactSet/>
 						</configuration>
 					</execution>
 				</executions>
@@ -129,7 +130,7 @@
 										</goals>
 									</pluginExecutionFilter>
 									<action>
-										<ignore></ignore>
+										<ignore/>
 									</action>
 								</pluginExecution>
 							</pluginExecutions>
