@@ -14,7 +14,7 @@ $ cd cvc-hotel-broker-vertx-camel-bridge
 $ mvn clean -DskipTests compile exec:java 
 ````
 #### Payload(s)
-**see /snapshots/postman/getHotelByCityId.png.png**
+**see /snapshots/postman/getHotelByCityId.png**
 
 #### Running the jar
 * Inside target dir
