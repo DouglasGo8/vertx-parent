@@ -30,7 +30,7 @@ public class MainVertx extends AbstractVerticle {
                     {
                         setType("file");
                         setFormat("json");
-                        setConfig(new JsonObject().put("path", "./conf/config.json"));
+                        setConfig(new JsonObject().put("path", "./src/main/resources/conf/config.json"));
                     }
                 });
             }

@@ -12,13 +12,14 @@ import javax.inject.Inject;
 
 public class HotelResource {
 
-    @Inject
-    PostServiceProperties props;
+    @Inject PostServiceProperties props;
+    @Inject TravelOfHotelOps travelOfHotelOps;
+
 
     @SneakyThrows
     @ConsumeEvent(value = "vertx.hotelByIdQ")
     public void travelReservationAsync(Message<HotelInfoReq> hotelInfoReq) {
-        var travel = TravelOfHotelOps.getHotelDetails(props.getUrl(), hotelInfoReq.body());
+        var travel = this.travelOfHotelOps.getHotelDetails(props.getUrl(), hotelInfoReq.body());
         hotelInfoReq.reply(JsonObject.mapFrom(travel));
     }
 

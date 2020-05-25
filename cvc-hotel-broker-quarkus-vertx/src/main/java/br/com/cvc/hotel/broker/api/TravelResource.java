@@ -2,7 +2,6 @@ package br.com.cvc.hotel.broker.api;
 
 import br.com.cvc.hotel.broker.domain.hotel.HotelInfoReq;
 import br.com.cvc.hotel.broker.domain.vo.TravelInfoResp;
-import br.com.cvc.hotel.broker.domain.vo.TravelOfHotelOps;
 import io.vertx.axle.core.eventbus.EventBus;
 import io.vertx.axle.core.eventbus.Message;
 import io.vertx.core.json.JsonObject;

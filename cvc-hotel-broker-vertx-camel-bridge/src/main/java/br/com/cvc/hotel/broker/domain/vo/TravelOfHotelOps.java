@@ -51,7 +51,7 @@ public class TravelOfHotelOps {
                 ((room.getPrice().getChild() * totalChild * periodOfDays) / 0.7d));
 
         final List<RoomInfoResp> rooms = Collections.singletonList(new RoomInfoResp() {{
-            setRoomID(hotelsAvailsResp.getId()); // roomID or hotels ID?
+            setRoomID(hotelsAvailsResp.getId());
             setCategoryName(room.getCategoryName());
             setTotalPrice(NumberFormat.getInstance().parse(dt.format(totalPrice)).doubleValue());
             setPriceDetail(new PriceInfoResp() {{

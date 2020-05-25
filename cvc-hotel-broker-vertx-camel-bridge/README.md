@@ -10,15 +10,20 @@ $ mvn clean dependency:resolve
 $ cd utils-lib
 $ mvn clean -DskipTests package 
 $ mvn install:install-file -Dfile=target/utils-lib-1.0-SNAPSHOT.jar -DgroupId=io.vertx.pagseguro -DartifactId=utils-lib -Dversion=1.0-SNAPSHOT -Dpackaging=jar
+$ cd cvc-hotel-broker-vertx-camel-bridge
 $ mvn clean -DskipTests compile exec:java 
 ````
-#### Payloads and Tests
-**see /snapshots/postman/fullOverview_Test1.png**
+#### Payload(s)
+**see /snapshots/postman/getHotelByCityId.png.png**
 
-#### Running jar with conf dir on the root 
+#### Running the jar
+* Inside target dir
 ````
-$ java -jar target/cvc-hotel-broker-1.0-SNAPSHOT-fat.jar
+$ java -jar cvc-hotel-broker-1.0-SNAPSHOT-fat.jar
 ````
 #### Endpoint 
-**see /snapshots/postman/fullOverview_Test1.png**
+**see /snapshots/postman/getHotelByCityId.png.png**
+
+
+Some issues or Mistakes report to sgtear@hotmail.com 
 

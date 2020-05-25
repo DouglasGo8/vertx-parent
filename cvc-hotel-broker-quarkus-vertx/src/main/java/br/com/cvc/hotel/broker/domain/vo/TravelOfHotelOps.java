@@ -1,74 +1,72 @@
 package br.com.cvc.hotel.broker.domain.vo;
 
 import br.com.cvc.hotel.broker.domain.hotel.HotelInfoReq;
-import br.com.cvc.hotel.broker.domain.hotel.HotelsAvailsResp;
-import br.com.cvc.hotel.broker.domain.hotel.Room;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.vertx.core.json.JsonObject;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
+import org.json.JSONArray;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.core.MediaType;
+import javax.enterprise.context.ApplicationScoped;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.stream.Stream;
 
+@ApplicationScoped
 @NoArgsConstructor
 public class TravelOfHotelOps {
 
-    private static final ExecutorService executorService = Executors.newFixedThreadPool(5);
-    private static final HttpClient httpClient = HttpClient.newBuilder().executor(executorService)
+    //private static final ExecutorService executorService = Executors.newFixedThreadPool(5);
+    private final HttpClient httpClient = HttpClient.newBuilder()
+            //.executor(executorService)
             .version(HttpClient.Version.HTTP_1_1)
             .build();
 
     @SneakyThrows
-    public static TravelInfoResp getHotelDetails(final String url, final HotelInfoReq pHotel) {
+    public TravelInfoResp getHotelDetails(final String url, final HotelInfoReq pHotel) {
 
-        var uri = new URI(url.concat(String.valueOf(pHotel.getCityCode())));
-        var request = HttpRequest.newBuilder().uri(uri).GET().build();
-        var response = httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofByteArray())
+        final var uri = new URI(url.concat(String.valueOf(pHotel.getCityCode())));
+        final var request = HttpRequest.newBuilder().uri(uri).GET().build();
+        final var response = httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
                 .toCompletableFuture()
                 .get();
+        // To works with GraalVM must remove POJO's Reflections
+        // and works with JSON Objects
+        final var json = new JSONArray(response).getJSONObject(0);
+        // Works just with first Room option
+        final var jsonOfRoom = json.getJSONArray("rooms").getJSONObject(0);
+        final var jsonOfPrices = json.getJSONArray("rooms").getJSONObject(0).getJSONObject("price");
 
-        var hotels = new ObjectMapper().readValue(response, HotelsAvailsResp[].class);
-        final HotelsAvailsResp hotelsAvailsResp = hotels[0];
-
-        final DecimalFormat dt = new DecimalFormat("####0.00");
-        final int periodOfDays = Period.between(pHotel.getCheckIn(), pHotel.getCheckOut()).getDays();
+        //
+        final double priceOfAdult = jsonOfPrices.getDouble("adult");
+        final double priceOfChild = jsonOfPrices.getDouble("child");
         //
         final int totalAdult = pHotel.getQntAdult();
         final int totalChild = pHotel.getQntChildren();
-        //
-        final Room room = hotelsAvailsResp.getRooms().get(0);
-        //
-        final double totalPrice = (((room.getPrice().getAdult() * totalAdult * periodOfDays) / 0.7d) +
-                ((room.getPrice().getChild() * totalChild * periodOfDays) / 0.7d));
+        final DecimalFormat dt = new DecimalFormat("####0.00");
+        final int periodOfDays = Period.between(pHotel.getCheckIn(), pHotel.getCheckOut()).getDays();
+
+        final double totalPrice = (((priceOfAdult * totalAdult * periodOfDays) / 0.7d) +
+                ((priceOfChild * totalChild * periodOfDays) / 0.7d));
 
         final List<RoomInfoResp> rooms = Collections.singletonList(new RoomInfoResp() {{
-            setRoomID(hotelsAvailsResp.getId()); // roomID or hotels ID?
-            setCategoryName(room.getCategoryName());
+
+            setRoomID(jsonOfRoom.getInt("roomID"));
+            setCategoryName(jsonOfRoom.getString("categoryName"));
             setTotalPrice(NumberFormat.getInstance().parse(dt.format(totalPrice)).doubleValue());
+
             setPriceDetail(new PriceInfoResp() {{
-                setPricePerDayAdult(room.getPrice().getAdult());
-                setPricePerDayChild(room.getPrice().getChild());
+                setPricePerDayAdult(priceOfAdult);
+                setPricePerDayChild(priceOfChild);
             }});
+
         }});
 
-        return new TravelInfoResp(hotelsAvailsResp.getId(), hotelsAvailsResp.getCityName(), rooms);
-
+        return new TravelInfoResp(jsonOfRoom.getInt("roomID"), json.getString("cityName"), rooms);
     }
 }
