@@ -22,7 +22,7 @@ $ mvn clean -DskipTests compile exec:java
 $ java -jar cvc-hotel-broker-1.0-SNAPSHOT-fat.jar
 ````
 #### Endpoint 
-**see /snapshots/postman/getHotelByCityId.png.png**
+**see /snapshots/postman/getHotelByCityId.png**
 
 
 Some issues or Mistakes report to sgtear@hotmail.com 
