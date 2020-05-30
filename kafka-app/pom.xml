@@ -12,7 +12,7 @@
     </parent>
 
     <artifactId>kafka-app</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>io.vertx.pagseguro.kafka</groupId>
     <packaging>jar</packaging>
 
     <name>Kafka Vertx with Debezium integration</name>
@@ -103,7 +103,7 @@
         <!-- utils -->
 
         <dependency>
-            <groupId>io.vertx.pagseguro</groupId>
+            <groupId>io.vertx.pagseguro.utils</groupId>
             <artifactId>utils-lib</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>

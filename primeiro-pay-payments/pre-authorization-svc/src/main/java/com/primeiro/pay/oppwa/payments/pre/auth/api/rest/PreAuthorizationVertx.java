@@ -27,6 +27,7 @@ public class PreAuthorizationVertx extends AbstractVerticle {
     public void start() {
 
         final Router router = Router.router(super.vertx);
+        //
         final String camelQ = super.config().getString("camelQ");
         final String vertxQ = super.config().getString("vertxQ");
         //
@@ -45,7 +46,7 @@ public class PreAuthorizationVertx extends AbstractVerticle {
             handler.response()
                     .setStatusCode(200)
                     .putHeader("content-type", "application/json; charset=utf-8")
-                    .end(Json.encodePrettily(new JsonObject().put("message", "Hi Primero Pay")));
+                    .end(Json.encodePrettily(new JsonObject().put("message", "Hi PrimeroPay")));
         });
         //
         router.post(super.config().getString("pathPayment")).handler(this::preAuthorizationRoute);

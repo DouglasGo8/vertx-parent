@@ -1,5 +1,7 @@
 package com.primeiro.pay.oppwa.payments.pre.auth;
 
+import static io.vertx.pagseguro.utils.VertxRunner.runVerticle;
+
 import com.primeiro.pay.oppwa.payments.pre.auth.api.rest.PreAuthorizationVertx;
 import io.vertx.config.ConfigRetriever;
 import io.vertx.config.ConfigRetrieverOptions;
@@ -10,8 +12,6 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import lombok.SneakyThrows;
-
-import static io.vertx.pagseguro.VertxRunner.runVerticle;
 
 /**
  * @author dbatista
@@ -29,7 +29,7 @@ public class MainVertx extends AbstractVerticle {
                     {
                         setType("file");
                         setFormat("json");
-                        setConfig(new JsonObject().put("path", "./src/main/resources/conf/config.json"));
+                        setConfig(new JsonObject().put("path", "./config.json"));
                     }
                 });
             }

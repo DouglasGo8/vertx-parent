@@ -1,5 +1,7 @@
 package br.com.cvc.hotel.broker;
 
+import static io.vertx.pagseguro.utils.VertxRunner.runVerticle;
+
 import br.com.cvc.hotel.broker.api.rest.TravelRouteVertx;
 import io.vertx.config.ConfigRetriever;
 import io.vertx.config.ConfigRetrieverOptions;
@@ -10,8 +12,6 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.logging.Logger;
 import io.vertx.core.logging.LoggerFactory;
 import lombok.SneakyThrows;
-
-import static io.vertx.pagseguro.VertxRunner.runVerticle;
 
 /**
  * @author dbatista

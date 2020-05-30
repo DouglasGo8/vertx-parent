@@ -1,6 +1,6 @@
 package io.pagseguro.vertx.kafka;
 
-import static io.vertx.pagseguro.VertxRunner.runVerticle;
+import static io.vertx.pagseguro.utils.VertxRunner.runVerticle;
 
 import java.io.File;
 import java.util.Map;

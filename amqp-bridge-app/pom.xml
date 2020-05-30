@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>amqp-bridge-app</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>io.vertx.pagseguro.amqp</groupId>
     <packaging>jar</packaging>
     <name>AMQP Vertx App</name>
     <description>Add project description here</description>
@@ -32,7 +32,7 @@
             <version>${vertx.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.vertx.pagseguro</groupId>
+            <groupId>io.vertx.pagseguro.utils</groupId>
             <artifactId>utils-lib</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -46,14 +46,6 @@
     <build>
         <plugins>
             <!-- Vert.x requires Java 8 -->
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -78,7 +70,7 @@
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
-                                        <Main-Class>io.vertx.pagseguro.MainVerticle</Main-Class>
+                                        <Main-Class>io.vertx.pagseguro.amqp.MainVerticle</Main-Class>
                                     </manifestEntries>
                                 </transformer>
                                 <transformer
@@ -107,7 +99,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>${exec-maven-plugin.version}</version>
                 <configuration>
-                    <mainClass>io.vertx.pagseguro.MainVerticle</mainClass>
+                    <mainClass>io.vertx.pagseguro.amqp.MainVerticle</mainClass>
                 </configuration>
             </plugin>
         </plugins>

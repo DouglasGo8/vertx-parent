@@ -48,6 +48,7 @@
         <module>amqp-bridge-app</module>
         <module>basic-concepts</module>
         <module>circuit-breaker</module>
+        <module>primeiro-pay-payments</module>
         <module>nubank-check-balance-app</module>
         <module>cvc-hotel-broker-quarkus-vertx</module>
         <module>cvc-hotel-broker-vertx-camel-bridge</module>

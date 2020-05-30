@@ -12,7 +12,7 @@
 	</parent>
 
 	<artifactId>circuit-breaker</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<groupId>io.vertx.pagseguro.circuit.breaker</groupId>	
 	<packaging>jar</packaging>
 
 	<name>Circuit Breaker with Vertx</name>
@@ -38,7 +38,7 @@
 			<version>${vertx.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.vertx.pagseguro</groupId>
+			<groupId>io.vertx.pagseguro.utils</groupId>
 			<artifactId>utils-lib</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
@@ -71,7 +71,7 @@
 								<transformer
 									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
-										<Main-Class>io.vertx.pagseguro.Main</Main-Class>
+										<Main-Class>io.vertx.pagseguro.amqp.Main</Main-Class>
 									</manifestEntries>
 								</transformer>
 								<transformer
@@ -101,7 +101,7 @@
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>${exec-maven-plugin.version}</version>
 				<configuration>
-					<mainClass>io.vertx.pagseguro.Main</mainClass>
+					<mainClass>io.vertx.pagseguro.amqp.Main</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

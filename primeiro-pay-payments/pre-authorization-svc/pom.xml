@@ -69,11 +69,6 @@
             <artifactId>camel-xstream</artifactId>
             <version>${camel.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.vertx.pagseguro</groupId>
-            <artifactId>utils-lib</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
     <build>

@@ -9,7 +9,7 @@ $ cd vertx-parent
 $ mvn clean dependency:resolve
 $ cd utils-lib
 $ mvn clean -DskipTests package 
-$ mvn install:install-file -Dfile=target/utils-lib-1.0-SNAPSHOT.jar -DgroupId=io.vertx.pagseguro -DartifactId=utils-lib -Dversion=1.0-SNAPSHOT -Dpackaging=jar
+$ mvn install:install-file -Dfile=target/utils-lib-1.0-SNAPSHOT.jar -DgroupId=io.vertx.pagseguro.utils -DartifactId=utils-lib -Dversion=1.0-SNAPSHOT -Dpackaging=jar
 $ cd ...
 $ mvn clean -DskipTests compile exec:java 
 ````
