@@ -22,8 +22,6 @@ public class MainVertx extends AbstractVerticle {
 
     private static final Logger logger = LoggerFactory.getLogger(MainVertx.class);
 
-
-
     @Override
     @SneakyThrows
     public void start() throws Exception {

@@ -8,7 +8,7 @@
     <bean id="beanToPayloadBody"
           class="com.primeiro.pay.oppwa.payments.pre.auth.service.PreAuthPayload"/>
 
-    <camelContext id="preAuthCamelContext" xmlns="http://camel.apache.org/schema/spring" loadTypeConverters="true">
+    <camelContext id="preAuthCamelContext" xmlns="http://camel.apache.org/schema/spring">
         <propertyPlaceholder id="propertyPlaceHolder">
             <propertiesLocation resolver="classpath" path="application.properties"/>
         </propertyPlaceholder>

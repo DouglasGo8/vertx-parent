@@ -7,5 +7,5 @@ services:
     - 12088:12088
     environment:
       - preAuthUrl=https://test.oppwa.com/v1/payments
-      - entityId={{entity_id_here}}
-      - authentication={{auth_here}}
+      - entityId=8ac7a4ca6db97ef1016dbe9214e70aac
+      - authentication=OGFjN2E0Y2E2ZGI5N2VmMTAxNmRiZTkwZTMxZDBhYTh8WENkRUs0NHJubQ==

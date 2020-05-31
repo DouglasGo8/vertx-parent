@@ -26,7 +26,22 @@ $ java -jar oopwa-pre-auth-svc-1.0-SNAPSHOT-fat.jar \
 ````
 #### Payload(s)
 **see **
-/pre-authorization-svc/snapshots/postman/paymentPostSuccessMessage.png
+* /pre-authorization-svc/snapshots/postman/paymentPostSuccessMessage.png
+* (http://localhost:12088/api/v1/preauth/payment) (POST)
+```json
+{
+    "amount": "92.00",
+    "currency": "EUR",
+    "paymentType": "PA",
+    "paymentBrand": "VISA",
+    "documentNumber": "94429110077",
+    "cardCvv": "123",
+    "cardExpiryYear": "2020",
+    "cardExpiryMonth": "05",
+    "cardNumber": "4200000000000000",
+    "cardHolder": "Jane Jone"
+}
+```
 
 #### Docker 
 ````
