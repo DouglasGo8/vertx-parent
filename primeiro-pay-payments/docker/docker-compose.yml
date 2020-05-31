@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  pre-auth:
+    image: douglasdb/pre-auth-svc:latest
+    ports:
+    - 12088:12088
+    environment:
+      - preAuthUrl=https://test.oppwa.com/v1/payments
+      - entityId={{entity_id_here}}
+      - authentication={{auth_here}}

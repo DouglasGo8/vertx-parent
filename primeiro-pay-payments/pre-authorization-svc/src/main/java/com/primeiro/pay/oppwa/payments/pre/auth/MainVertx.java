@@ -9,9 +9,11 @@ import io.vertx.config.ConfigStoreOptions;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.json.JsonObject;
-import io.vertx.core.logging.Logger;
-import io.vertx.core.logging.LoggerFactory;
+
 import lombok.SneakyThrows;
+import org.apache.log4j.Level;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author dbatista
@@ -20,9 +22,14 @@ public class MainVertx extends AbstractVerticle {
 
     private static final Logger logger = LoggerFactory.getLogger(MainVertx.class);
 
+
+
     @Override
     @SneakyThrows
     public void start() throws Exception {
+        //
+        org.apache.log4j.Logger.getLogger("io.vertx.core.impl.BlockedThreadChecker").setLevel(Level.OFF);
+        //
         runVerticle(vertx -> ConfigRetriever.create(vertx, new ConfigRetrieverOptions() {
             {
                 addStore(new ConfigStoreOptions() {
