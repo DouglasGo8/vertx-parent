@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+
+  preauth-service:
+    image: douglasdb/preauth-service:latest
+    ports:
+      - 12080:12080
+    environment:
+      - authentication={{AUTH_MUST_CONFIG_HERE}}
+
+  capture-service:
+    image: douglasdb/capture-service:latest
+    ports:
+      - 12081:12081
+    environment:
+      - authentication={{AUTH_MUST_CONFIG_HERE}}
+
+  refund-service:
+    image: douglasdb/refund-service:latest
+    ports:
+      - 12082:12082
+    environment:
+      - authentication={{AUTH_MUST_CONFIG_HERE}}

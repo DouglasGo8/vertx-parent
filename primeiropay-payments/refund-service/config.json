@@ -1,0 +1,8 @@
+{
+	"camelQ": "camelRefundRoute",
+	"vertxQ": "vertx.refund.bus",
+	"httpPort": 12082,
+	"pathGreet": "/api/v1/refund/greeting",
+	"pathRefund": "/api/v1/refund/rebill",
+	"appContextPath": "META-INF/spring/app-context.xml"
+}

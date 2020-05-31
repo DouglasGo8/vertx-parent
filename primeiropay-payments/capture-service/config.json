@@ -1,0 +1,8 @@
+{
+	"camelQ": "camelCaptureRoute",
+	"vertxQ": "vertx.capture.bus",
+	"httpPort": 12081,
+	"pathGreet": "/api/v1/capture/greeting",
+	"pathCapture": "/api/v1/capture/rebill",
+	"appContextPath": "META-INF/spring/app-context.xml"
+}

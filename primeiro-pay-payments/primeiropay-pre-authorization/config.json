@@ -1,0 +1,8 @@
+{
+	"camelQ": "camelPreAuthRoute",
+	"vertxQ": "vertx.preAuth",
+	"httpPort": 12088,
+	"pathGreet": "/api/v1/preauth/greeting",
+	"pathPayment": "/api/v1/preauth/payment",
+	"appContextPath": "META-INF/spring/app-context.xml"
+}

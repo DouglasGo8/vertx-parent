@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                        http://camel.apache.org/schema/spring
+                        http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <bean id="beanToPayloadBody"
+          class="com.primeiro.pay.oppwa.payments.preauth.service.PreAuthPayload"/>
+
+    <camelContext id="preAuthCamelContext" xmlns="http://camel.apache.org/schema/spring">
+        <propertyPlaceholder id="propertyPlaceHolder">
+            <propertiesLocation resolver="classpath" path="application.properties"/>
+        </propertyPlaceholder>
+        <endpoint uri="direct:preAuth" id="camelPreAuthRoute"/>
+        <onException>
+            <exception>org.apache.camel.http.common.HttpOperationFailedException</exception>
+            <log message="${body}"/>
+        </onException>
+        <route streamCache="true">
+            <from uri="camelPreAuthRoute"/>
+            <setHeader headerName="Exchange.HTTP_METHOD">
+                <constant>POST</constant>
+            </setHeader>
+            <setHeader headerName="Exchange.CONTENT_TYPE">
+                <constant>application/x-www-form-urlencoded; charset: UTF-8</constant>
+            </setHeader>
+            <setHeader headerName="Exchange.CONTENT_ENCODING">
+                <constant>UTF-8</constant>
+            </setHeader>
+            <setHeader headerName="Authorization">
+                <!-- Must use env: just when deploy to containers or with active maven profiles -->
+                <!--<simple>Bearer {{env:authentication}}</simple>-->
+                <simple>Bearer {{authentication}}</simple>
+            </setHeader>
+            <setBody>
+                <method ref="beanToPayloadBody" method="makeHttpRequest"/>
+            </setBody>
+            <to uri="{{pre.auth.url}}"/>
+            <convertBodyTo type="java.lang.String"/>
+            <bean ref="beanToPayloadBody" method="makeHttpResponse"/>
+            <!--<log message="${body}"/>-->
+        </route>
+    </camelContext>
+
+</beans>
