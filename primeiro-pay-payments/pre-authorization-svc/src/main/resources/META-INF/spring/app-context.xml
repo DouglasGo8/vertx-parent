@@ -29,16 +29,16 @@
                 <constant>UTF-8</constant>
             </setHeader>
             <setHeader headerName="Authorization">
-                <!-- Must use env: when deploy to containers or with active maven profiles -->
+                <!-- Must use env: just when deploy to containers or with active maven profiles -->
                 <simple>Bearer {{env:authentication}}</simple>
                 <!--<simple>Bearer {{authentication}}</simple>-->
             </setHeader>
             <setBody>
-                <!-- Must use env: when deploy to containers or with active maven profiles -->
+                <!-- Must use env: just when deploy to containers or with active maven profiles -->
                 <method ref="beanToPayloadBody" method="makeHttpRequest(${body}, {{env:entityId}})"/>
                <!-- <method ref="beanToPayloadBody" method="makeHttpRequest(${body}, {{entityId}})"/> -->
             </setBody>
-            <!-- Must use env: when deploy to containers or with active maven profiles -->
+            <!-- Must use env: just when deploy to containers or with active maven profiles -->
             <to uri="{{env:preAuthUrl}}"/>
             <convertBodyTo type="java.lang.String"/>
             <bean ref="beanToPayloadBody"/>
