@@ -1,6 +1,7 @@
 
 package io.vertx.pagseguro.utils;
 
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 import com.hazelcast.config.Config;
@@ -18,65 +19,71 @@ import io.vertx.spi.cluster.hazelcast.HazelcastClusterManager;
  */
 public class VertxRunner {
 
-	/**
-	 *
-	 * @param clazz
-	 */
-	public static void runVerticle(Class<? extends AbstractVerticle> clazz) {
+    /**
+     * @param clazz
+     */
+    public static void runVerticle(Class<? extends AbstractVerticle> clazz) {
 
-		final DeploymentOptions deploymentOptions = new DeploymentOptions();
-		//
-		deploymentOptions.setInstances(2);
-		//
-		final Consumer<Vertx> runner = vertx -> {
+        final DeploymentOptions deploymentOptions = new DeploymentOptions();
+        //
+        deploymentOptions.setInstances(2);
+        //
+        final Consumer<Vertx> runner = vertx -> {
 
-			vertx.deployVerticle(clazz.getName(), deploymentOptions);
+            vertx.deployVerticle(clazz.getName(), deploymentOptions);
 
-		};
+        };
 
-		final Vertx vertx = Vertx.vertx(new VertxOptions());
+        final Vertx vertx = Vertx.vertx(new VertxOptions());
 
-		runner.accept(vertx);
-	}
+        runner.accept(vertx);
+    }
 
-	/**
-	 *
-	 * @param runner
-	 */
-	public static void runVerticle(final Consumer<Vertx> runner) {
-		runner.accept(Vertx.vertx(new VertxOptions()));
-	}
+    /**
+     * @param runner
+     */
+    public static void runVerticle(final Consumer<Vertx> runner) {
+        runner.accept(Vertx.vertx(new VertxOptions()));
+    }
 
-	/**
-	 * 
-	 * @param runner
-	 */
-	public static void clusteredVertx(final Consumer<Vertx> runner) {
+    /**
+     * @param runner
+     */
+    public static void runVerticle(final Consumer<Vertx> runner, long maxEventLoopTime) {
+        runner.accept(Vertx.vertx(new VertxOptions()
+                .setBlockedThreadCheckInterval(maxEventLoopTime)
+                .setBlockedThreadCheckIntervalUnit(TimeUnit.SECONDS)));
+    }
 
-		final Config haZelCastConfig = new Config();
+    /**
+     * @param runner
+     */
+    public static void clusteredVertx(final Consumer<Vertx> runner) {
 
-		haZelCastConfig
-			.getNetworkConfig()
-			.getJoin()
-			.getTcpIpConfig()
-				.addMember("127.0.0.1").setEnabled(true);
+        final Config haZelCastConfig = new Config();
 
-		haZelCastConfig
-			.getNetworkConfig()
-			.getJoin()
-				.getMulticastConfig().setEnabled(false);
+        haZelCastConfig
+                .getNetworkConfig()
+                .getJoin()
+                .getTcpIpConfig()
+                .addMember("127.0.0.1").setEnabled(true);
 
-		final ClusterManager mgr = new HazelcastClusterManager(haZelCastConfig);
+        haZelCastConfig
+                .getNetworkConfig()
+                .getJoin()
+                .getMulticastConfig().setEnabled(false);
 
-		final VertxOptions options = new VertxOptions().setClusterManager(mgr);
+        final ClusterManager mgr = new HazelcastClusterManager(haZelCastConfig);
 
-		Vertx.clusteredVertx(options, res -> {
-			if (res.succeeded()) {
-				runner.accept(res.result());
-			} else {
-				throw new IllegalArgumentException(res.cause());
-			}
-		});
-	}
+        final VertxOptions options = new VertxOptions().setClusterManager(mgr);
+
+        Vertx.clusteredVertx(options, res -> {
+            if (res.succeeded()) {
+                runner.accept(res.result());
+            } else {
+                throw new IllegalArgumentException(res.cause());
+            }
+        });
+    }
 
 }
