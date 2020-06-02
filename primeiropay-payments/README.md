@@ -3,7 +3,7 @@
 ##### Microservice based on [Vert.x framework] (http://vertx.io), Vert.x is toolkit lightweight for building reactive application on JVM, [Apache Camel] (https://camel.apache.org) is an open source integration framework that empowers you to quickly and easily integrate various systems consuming or producing data. 
 ---
 #### Compile and Run with Apache Maven
-* JDK 8 (Mandatory)
+* JDK 8 Local
 * If using Powershell, wrap -D parameters in double quotes
 ````
 $ cd vertx-parent
@@ -31,6 +31,7 @@ $ java -jar oopwa-preauthorization-service-1.0-SNAPSHOT-fat.jar -Dauthentication
 ```json
 {
     "amount": "92.00",
+    "entityId": "8ac7a4ca6db97ef1016dbe9214e70aac",
     "currency": "EUR",
     "paymentType": "PA",
     "paymentBrand": "VISA",
@@ -167,15 +168,15 @@ $ java -jar oopwa-refund-service-1.0-SNAPSHOT-fat.jar -Dauthentication={{YOUR_AU
 ````
 #### Payload(s)
 **see**
-* ./snapshots/postman/capture/*.png
-* (http://localhost:12081/api/v1/capture/rebill)(POST)(PA id)
+* ./snapshots/postman/refund/*.png
+* (http://localhost:12082/api/v1/refund/rebill)(POST)(PA id)
 ```json
 {
 	"id": "8ac7a4a2725fb8f401726b74e450367d",
 	"amount": "10.00",
 	"entityId": "8a8294184e736012014e78a17a5615ac",
 	"currency": "EUR",
-	"paymentType": "CP"
+	"paymentType": "RF"
 }
 ```
 #### Docker (with env:propertyPlaceHolder)
