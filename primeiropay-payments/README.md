@@ -7,15 +7,15 @@
 * If using Powershell, wrap -D parameters in double quotes
 ````
 $ cd vertx-parent
-$ mvn clean dependency:resolve
 $ cd utils-lib
 $ mvn clean -DskipTests package 
 $ mvn install:install-file -Dfile=target/utils-lib-1.0-SNAPSHOT.jar -DgroupId=io.vertx.pagseguro.utils -DartifactId=utils-lib -Dversion=1.0-SNAPSHOT -Dpackaging=jar
 $ cd ..
+$ mvn clean dependency:resolve
 $ cd preauthorization-service
 $ mvn clean -DskipTests -Dauthentication=YOUR_AUTH_HERE -q compile exec:java
 ````
-#### Running the jar
+#### Packaging the überjar
 * Inside preauthorization-service dir
 ````
 $ mvn clean -DskipTests -q compile package 
@@ -63,13 +63,13 @@ $ java -jar oopwa-preauthorization-service-1.0-SNAPSHOT-fat.jar -Dauthentication
 ````
 $ mvn clean -DskipTests -q compile package
 $ docker build -t preauth-service .
-$ docker run --rm -e authentication={{AUTH_HERE}} -p 12080:12080 --rm --name app1 preauth-service
+$ docker run --rm -e authentication={{AUTH_HERE}} -p 12080:12080 --name app1 preauth-service
 ````
 #### Docker Hub
 docker tag preauth-service:latest douglasdb/preauth-service:latest
 docker push douglasdb/preauth-service:latest
 
-##### Quick Run with docker-compose (Needs Authorization Code in Env)
+##### Quick Run with docker-compose (Needs Authorization Code in Env) (./docker/docker-compose.yml)
 * Inside primeiropay-payments dir
 ````
 $ cd docker
@@ -89,15 +89,15 @@ $ docker-compose up -d
 * If using Powershell, wrap -D parameters in double quotes
 ````
 $ cd vertx-parent
-$ mvn clean dependency:resolve
 $ cd utils-lib
 $ mvn clean -DskipTests package 
 $ mvn install:install-file -Dfile=target/utils-lib-1.0-SNAPSHOT.jar -DgroupId=io.vertx.pagseguro.utils -DartifactId=utils-lib -Dversion=1.0-SNAPSHOT -Dpackaging=jar
 $ cd ..
+$ mvn clean dependency:resolve
 $ cd capture-service
 $ mvn clean -DskipTests -Dauthentication=YOUR_AUTH_HERE -q compile exec:java
 ````
-#### Running the jar
+#### Packaging the überjar
 * Inside capture-service dir
 ````
 $ mvn clean -DskipTests -q compile package 
@@ -129,7 +129,7 @@ $ docker run --rm -e authentication={{AUTH_HERE}} -p 12081:12081 --rm --name app
 docker tag capture-service:latest douglasdb/capture-service:latest
 docker push douglasdb/capture-service:latest
 
-##### Quick Run with docker-compose (Needs Authorization Code in Envs)
+##### Quick Run with docker-compose (Needs Authorization Code in Envs)(./docker/docker-compose.yml)
 * Inside primeiropay-payments dir
 ````
 $ cd docker
@@ -149,15 +149,15 @@ $ docker-compose up -d
 * If using Powershell, wrap -D parameters in double quotes
 ````
 $ cd vertx-parent
-$ mvn clean dependency:resolve
 $ cd utils-lib
 $ mvn clean -DskipTests package 
 $ mvn install:install-file -Dfile=target/utils-lib-1.0-SNAPSHOT.jar -DgroupId=io.vertx.pagseguro.utils -DartifactId=utils-lib -Dversion=1.0-SNAPSHOT -Dpackaging=jar
 $ cd ..
+$ mvn clean dependency:resolve
 $ cd refund-service
 $ mvn clean -DskipTests -Dauthentication=YOUR_AUTH_HERE -q compile exec:java
 ````
-#### Running the jar
+#### Packing the überjar
 * Inside capture-service dir
 ````
 $ mvn clean -DskipTests -q compile package 
@@ -189,7 +189,7 @@ $ docker run --rm -e authentication={{AUTH_HERE}} -p 12082:12082 --rm --name app
 docker tag refund-service:latest douglasdb/refund-service:latest
 docker push douglasdb/refund-service:latest
 
-##### Quick Run with docker-compose (Needs Authorization Code in Envs)
+##### Quick Run with docker-compose (Needs Authorization Code in Envs)(./docker/docker-compose.yml)
 * Inside primeiropay-payments dir
 ````
 $ cd docker
