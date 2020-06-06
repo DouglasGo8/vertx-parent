@@ -76,7 +76,14 @@ $ cd docker
 $ docker-compose up -d
 ````
 #### Openshift
-* (under construction)
+````
+$ minishift start
+$ cd k8s
+$ minishift oc-env
+$ eval $(minishift oc-env)
+$ oc create -f deployment.yml
+
+````
 
 <hr />
 

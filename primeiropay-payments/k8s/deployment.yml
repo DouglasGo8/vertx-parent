@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: primeiropay-preauth
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app: primeiropay-preauth
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: primeiropay-preauth
+        tier: backend
+    spec:
+      containers:
+        - image: douglasdb/preauth-service:latest
+          name: preauth-app
+          env:
+            - name: authentication
+              value: "{{SOME_AUTH_HERE}}"
+          ports:
+            - containerPort: 12080
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /api/v1/preauth/greeting
+              port: 12080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 200m
+              memory: 250Mi
