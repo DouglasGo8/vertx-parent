@@ -82,7 +82,7 @@ $ cd k8s
 $ minishift oc-env
 $ eval $(minishift oc-env)
 $ oc create -f deployment.yml
-
+$ oc create -f service.yml
 ````
 
 <hr />
@@ -142,9 +142,6 @@ docker push douglasdb/capture-service:latest
 $ cd docker
 $ docker-compose up -d
 ````
-#### Openshift
-* (under construction)
-
 <hr />
 
 ### **Vert.x Bridging over Camel <~> Primeiro Pay :: Refund Service**
@@ -202,7 +199,3 @@ docker push douglasdb/refund-service:latest
 $ cd docker
 $ docker-compose up -d
 ````
-#### Openshift
-* (under construction)
-
-
